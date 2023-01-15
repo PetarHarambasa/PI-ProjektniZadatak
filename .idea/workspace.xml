@@ -1,21 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ef4c1b0f-12b0-4f81-8f63-89fc2b5f4c97" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Petar-Harambasa.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/hr/algebra/pi/Solid.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/hr/algebra/pi/configuration/EmployeePayRates.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/hr/algebra/pi/configuration/TicketPrices.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/hr/algebra/pi/model/Employee.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/hr/algebra/pi/model/Terminal.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/hr/algebra/pi/model/Train.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/hr/algebra/pi/model/Vehicle.java" afterDir="false" />
+    <list default="true" id="ef4c1b0f-12b0-4f81-8f63-89fc2b5f4c97" name="Changes" comment="SOLID principles task">
+      <change afterPath="$PROJECT_DIR$/src/hr/algebra/pi/factory/BigVehicleFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/hr/algebra/pi/factory/SmallVehicleFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/hr/algebra/pi/factory/VehicleFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/hr/algebra/pi/model/BigBus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/hr/algebra/pi/model/BigTruck.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/hr/algebra/pi/model/IVehicle.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/hr/algebra/pi/model/SmallCar.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/hr/algebra/pi/model/SmallVan.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/hr/algebra/pi/model/Ticket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hr/algebra/pi/Solid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/hr/algebra/pi/Solid.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hr/algebra/pi/configuration/EmployeePayRates.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hr/algebra/pi/configuration/TicketPrices.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hr/algebra/pi/model/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/hr/algebra/pi/model/Employee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hr/algebra/pi/model/Terminal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/hr/algebra/pi/model/Terminal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hr/algebra/pi/model/Train.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hr/algebra/pi/model/Vehicle.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,7 +33,19 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GithubProjectSettings">
+    <option name="branchProtectionPatterns">
+      <list>
+        <option value="master" />
+      </list>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -46,9 +61,16 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false"
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "D:/PETAR FAKS/3.GODINA/Semestar 5/Programsko inženjerstvo/Projekt/DrugoRjesenje/PrvoRj/PetarHarambasa"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\PETAR FAKS\3.GODINA\Semestar 5\Programsko inženjerstvo\Projekt\Petar-Harambasa\src\hr\algebra\pi\model" />
+      <recent name="D:\PETAR FAKS\3.GODINA\Semestar 5\Programsko inženjerstvo\Projekt\Petar-Harambasa\src\hr\algebra\pi" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -57,8 +79,17 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1673094929915</updated>
-      <workItem from="1673094931357" duration="8569000" />
+      <workItem from="1673094931357" duration="9012000" />
+      <workItem from="1673363568238" duration="73000" />
+      <workItem from="1673768647483" duration="4662000" />
     </task>
+    <task id="LOCAL−00001" summary="SOLID principles task">
+      <created>1673108552202</created>
+      <option name="number" value="LOCAL−00001" />
+      <option name="presentableId" value="LOCAL−00001" />
+      <updated>1673108552202</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -69,10 +100,26 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="development" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="SOLID principles task" />
+    <option name="LAST_COMMIT_MESSAGE" value="SOLID principles task" />
   </component>
 </project>
