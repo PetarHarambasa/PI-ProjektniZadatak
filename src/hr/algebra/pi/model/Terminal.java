@@ -24,6 +24,10 @@ public class Terminal {
         IVehicle vehicle = null;
         if (size.equalsIgnoreCase("small")) {
             vehicle = smallVehicleFactory.createVehicle(type);
+            if (vehicle == null) {
+                System.out.println("Invalid vehicle type. Please try again.");
+                return false;
+            }
             if (smallTrainOccupancy >= smallTrainCapacity) {
                 System.out.println("Sorry, there is no space available on the train for this vehicle type. Please try again later.");
                 return false;
@@ -65,6 +69,26 @@ public class Terminal {
         System.out.println("Employee 2 revenue: " + employee2Revenue + " kn");
         System.out.println("Small train occupancy: " + smallTrainOccupancy + " / " + smallTrainCapacity);
         System.out.println("Big train occupancy: " + bigTrainOccupancy + " / " + bigTrainCapacity);
+    }
+
+    public int getSmallTrainOccupancy() {
+        return smallTrainOccupancy;
+    }
+
+    public int getBigTrainOccupancy() {
+        return bigTrainOccupancy;
+    }
+
+    public void setSmallTrainOccupancy(int smallTrainOccupancy) {
+        this.smallTrainOccupancy = smallTrainOccupancy;
+    }
+
+    public void setBigTrainOccupancy(int bigTrainOccupancy) {
+        this.bigTrainOccupancy = bigTrainOccupancy;
+    }
+
+    public double getTotalRevenue() {
+        return totalRevenue;
     }
 }
 
