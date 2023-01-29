@@ -1,81 +1,94 @@
 package hr.algebra.pi.model;
 
-import hr.algebra.pi.configuration.EmployeePayRates;
-import hr.algebra.pi.configuration.TicketPrices;
-
-import java.util.ArrayList;
+import hr.algebra.pi.factory.BigVehicleFactory;
+import hr.algebra.pi.factory.SmallVehicleFactory;
+import hr.algebra.pi.factory.VehicleFactory;
 
 public class Terminal {
-    private final Train smallTrain;
-    private final Train largeTrain;
-    private ArrayList<Employee> employees;
-    private int totalRevenue;
+    private int smallTrainCapacity = 2;
+    private int bigTrainCapacity = 6;
+    private int smallTrainOccupancy = 0;
+    private int bigTrainOccupancy = 0;
+    private double totalRevenue = 0;
+    private Employee employee1 = new Employee(0.1);
+    private Employee employee2 = new Employee(0.11);
+    private double employee1Revenue = 0;
+    private double employee2Revenue = 0;
+    private double minGasThreshold = 0.1;
+    private double minBatteryThreshold = 0.1;
 
-    public Terminal() {
-        smallTrain = new Train("small", 8);
-        largeTrain = new Train("large", 6);
-        employees = new ArrayList<>();
-        totalRevenue = 0;
-    }
+    private VehicleFactory smallVehicleFactory = new SmallVehicleFactory();
+    private VehicleFactory bigVehicleFactory = new BigVehicleFactory();
 
-    public void addEmployee(Employee employee) {
-        employees.add(employee);
-    }
-
-    public void checkInVehicle(Employee employee, Vehicle vehicle) {
-        int ticketPrice = 0;
-        if (vehicle.size.equals("small")) {
-            if (smallTrain.addVehicle(vehicle)) {
-                if (vehicle.type.equals("car")) {
-                    ticketPrice = TicketPrices.SMALL_VEHICLE_CAR_PRICE;
-                } else if (vehicle.type.equals("van")) {
-                    ticketPrice = TicketPrices.SMALL_VEHICLE_VAN_PRICE;
-                }
+    public boolean parkVehicle(String type, String size, double gasLevel, double batteryLevel) {
+        IVehicle vehicle = null;
+        if (size.equalsIgnoreCase("small")) {
+            vehicle = smallVehicleFactory.createVehicle(type);
+            if (vehicle == null) {
+                System.out.println("Invalid vehicle type. Please try again.");
+                return false;
             }
-        } else if (vehicle.size.equals("large")) {
-            if (largeTrain.addVehicle(vehicle)) {
-                if (vehicle.type.equals("bus")) {
-                    ticketPrice = TicketPrices.LARGE_VEHICLE_BUS_PRICE;
-                } else if (vehicle.type.equals("truck")) {
-                    ticketPrice = TicketPrices.LARGE_VEHICLE_TRUCK_PRICE;
-                }
+            if (smallTrainOccupancy >= smallTrainCapacity) {
+                System.out.println("Sorry, there is no space available on the train for this vehicle type. Please try again later.");
+                return false;
             }
+            smallTrainOccupancy++;
+        } else {
+            vehicle = bigVehicleFactory.createVehicle(type);
+            if (bigTrainOccupancy >= bigTrainCapacity) {
+                System.out.println("Sorry, there is no space available on the train for this vehicle type. Please try again later.");
+                return false;
+            }
+            bigTrainOccupancy++;
         }
 
-        if (ticketPrice > 0) {
-            double earnings = ticketPrice * EmployeePayRates.getRate(employee.getName());
-            employee.setEarnings(employee.getEarnings() + earnings);
-            totalRevenue += ticketPrice;
+        if (vehicle == null) {
+            System.out.println("Invalid vehicle type. Please try again.");
+            return false;
         }
 
-        System.out.println(vehicle.type + " " + vehicle.size + " on checking!");
-        System.out.println("Vehicle gas level: " + vehicle.gasLevel + "%");
-        if (vehicle.gasLevel < 10) {
-            System.out.println("Vehicle gas level below 10%, refilling...");
-            vehicle.refillGas();
-            System.out.println("Vehicle gas level: " + vehicle.gasLevel + "%");
+        if (gasLevel < minGasThreshold) {
+            System.out.println("The vehicle's gas level is too low. An employee will need to fill it up at the gas station.");
         }
-        System.out.println("Vehicle battery level: " + vehicle.batteryLevel + "%");
-        if (vehicle.batteryLevel < 10) {
-            System.out.println("Vehicle battery level below 10%, recharge...");
-            vehicle.rechargeBattery();
-            System.out.println("Vehicle battery level: " + vehicle.batteryLevel + "%");
+
+        if (batteryLevel < minBatteryThreshold) {
+            System.out.println("The vehicle's battery level is too low. An employee will need to charge it at the battery station.");
         }
+
+        Ticket ticket = new Ticket(vehicle);
+        totalRevenue += ticket.price;
+        employee1Revenue += ticket.price * employee1.getCommission();
+        employee2Revenue += ticket.price * employee2.getCommission();
+        System.out.println("Thank you for parking your vehicle at our terminal. Your ticket price is " + ticket.price + " €.");
+        return true;
     }
 
-    public void checkOutVehicle(Vehicle vehicle) {
-        if (vehicle.size.equals("small")) {
-            smallTrain.removeVehicle(vehicle);
-        } else if (vehicle.size.equals("large")) {
-            largeTrain.removeVehicle(vehicle);
-        }
+    public void checkRevenueAndOccupancy() {
+        System.out.println("Total revenue: " + totalRevenue + " kn");
+        System.out.println("Employee 1 revenue: " + employee1Revenue + " kn");
+        System.out.println("Employee 2 revenue: " + employee2Revenue + " kn");
+        System.out.println("Small train occupancy: " + smallTrainOccupancy + " / " + smallTrainCapacity);
+        System.out.println("Big train occupancy: " + bigTrainOccupancy + " / " + bigTrainCapacity);
     }
 
-    public void displayTotalRevenue() {
-        System.out.println("Total revenue: " + totalRevenue + " €");
+    public int getSmallTrainOccupancy() {
+        return smallTrainOccupancy;
     }
 
-    public void displayEmployeeEarnings(Employee employee) {
-        System.out.println("Earnings for " + employee.getName() + ": " + employee.getEarnings() + " €");
+    public int getBigTrainOccupancy() {
+        return bigTrainOccupancy;
+    }
+
+    public void setSmallTrainOccupancy(int smallTrainOccupancy) {
+        this.smallTrainOccupancy = smallTrainOccupancy;
+    }
+
+    public void setBigTrainOccupancy(int bigTrainOccupancy) {
+        this.bigTrainOccupancy = bigTrainOccupancy;
+    }
+
+    public double getTotalRevenue() {
+        return totalRevenue;
     }
 }
+
